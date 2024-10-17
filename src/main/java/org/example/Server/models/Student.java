@@ -1,13 +1,12 @@
 package org.example.Server.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -18,7 +17,7 @@ import java.util.UUID;
 public class Student {
 
     @Id
-    @Column(name = "uuid")
+    @Column(name = "id")
     private UUID studentId;
 
     @Column(name = "name")
@@ -27,12 +26,15 @@ public class Student {
     private String surname;
     @Column(name = "class")
     private String studentClass;
+    @OneToMany(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "student")
+    private List<Journal> journals = new ArrayList<>();
 
     @Override
     public String toString(){
         return studentId.toString() + ":"
                 + name + ":" + surname + ":"
-                + studentClass;
+                + studentClass + ":" + journals.stream().map(Journal::toString).toList();
     }
 
 }

@@ -1,6 +1,8 @@
 package org.example.Server;
 
+import org.example.Server.dao.SubjectDAO;
 import org.example.Server.services.StudentService;
+import org.example.Server.services.SubjectService;
 import org.example.Server.services.UserService;
 import org.freedesktop.dbus.connections.impl.DBusConnection;
 import org.freedesktop.dbus.connections.impl.DBusConnectionBuilder;
@@ -18,6 +20,7 @@ public class JournalServerImpl implements JournalServer{
 
     private final UserService userService = new UserService();
     private final StudentService studentService = new StudentService();
+    private final SubjectService subjectService = new SubjectService();
 
 
     public JournalServerImpl() throws DBusException, InterruptedException {
@@ -39,6 +42,18 @@ public class JournalServerImpl implements JournalServer{
     }
 
     @Override
+    public String GetStudentById(String id) {
+        return null;
+    }
+
+    @Override
+    public String UpdateStudentById(String id) {
+        return null;
+    }
+
+    @Override
+    public String AddUser(String login, String password, String access) {return userService.regUser(login, password, access);}
+    @Override
     public void DeleteStudent(String id){
         studentService.deleteStudentById(UUID.fromString(id));
     }
@@ -46,6 +61,26 @@ public class JournalServerImpl implements JournalServer{
     @Override
     public void AddStudent(String name, String surname, String classStudent){
         studentService.addStudent(name, surname, classStudent);
+    }
+
+    @Override
+    public String UpdateGradeById(String id) {
+        return null;
+    }
+
+    @Override
+    public String[] GetAllSubject() {
+        return subjectService.getAllSubject();
+    }
+
+    @Override
+    public String DeleteSubjectById(String id) {
+        return null;
+    }
+
+    @Override
+    public String UpdateSubjectById(String id) {
+        return null;
     }
 
     @Override

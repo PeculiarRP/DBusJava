@@ -17,10 +17,10 @@ public class StudentService {
     }
 
     public void addStudent(String name, String surname, String classStudent){
-        Student student = new Student(UUID.randomUUID(),
-                name,
-                surname,
-                classStudent);
-        studentDAO.addStudent(student);
+//        Student student = new Student(UUID.randomUUID(),
+//                name,
+//                surname,
+//                classStudent);
+//        studentDAO.addStudent(student);
     }
 }
