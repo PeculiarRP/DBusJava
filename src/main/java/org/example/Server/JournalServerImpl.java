@@ -1,7 +1,5 @@
 package org.example.Server;
 
-import org.example.Server.dao.SubjectDAO;
-import org.example.Server.models.Journal;
 import org.example.Server.services.JournalService;
 import org.example.Server.services.StudentService;
 import org.example.Server.services.SubjectService;
@@ -10,7 +8,6 @@ import org.freedesktop.dbus.connections.impl.DBusConnection;
 import org.freedesktop.dbus.connections.impl.DBusConnectionBuilder;
 import org.freedesktop.dbus.exceptions.DBusException;
 
-import org.example.Server.models.User;
 
 import java.util.UUID;
 import java.util.concurrent.CountDownLatch;

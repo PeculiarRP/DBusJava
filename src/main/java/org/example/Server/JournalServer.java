@@ -1,6 +1,5 @@
 package org.example.Server;
 
-import org.example.Server.models.User;
 import org.freedesktop.dbus.interfaces.DBusInterface;
 
 

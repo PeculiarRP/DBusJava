@@ -1,15 +1,5 @@
 package org.example;
-
-import org.example.Server.dao.JournalDAO;
-import org.example.Server.dao.StudentDAO;
-import org.example.Server.dao.UserDAO;
-import org.example.Server.models.Journal;
-import org.example.Server.services.JournalService;
 import org.example.Server.services.StudentService;
-import org.freedesktop.dbus.*;
-import org.freedesktop.dbus.annotations.DBusInterfaceName;
-
-import java.util.Arrays;
 
 
 public class Main {
