@@ -1,6 +1,8 @@
 package org.example.Server;
 
 import org.example.Server.dao.SubjectDAO;
+import org.example.Server.models.Journal;
+import org.example.Server.services.JournalService;
 import org.example.Server.services.StudentService;
 import org.example.Server.services.SubjectService;
 import org.example.Server.services.UserService;
@@ -21,6 +23,7 @@ public class JournalServerImpl implements JournalServer{
     private final UserService userService = new UserService();
     private final StudentService studentService = new StudentService();
     private final SubjectService subjectService = new SubjectService();
+    private final JournalService journalService = new JournalService();
 
 
     public JournalServerImpl() throws DBusException, InterruptedException {
@@ -38,17 +41,26 @@ public class JournalServerImpl implements JournalServer{
 
     @Override
     public String[] GetStudents() {
-        return studentService.getAllStudent();
+        return studentService.getAllStudent(true);
+    }
+
+    @Override
+    public String[] GetStudents(Boolean isAsc) {
+        return studentService.getAllStudent(isAsc);
+    }
+    @Override
+    public String[] GetStudentBySurname(String param, Boolean isAsc){
+        return studentService.getStudentsByParam(param, isAsc);
     }
 
     @Override
     public String GetStudentById(String id) {
-        return null;
+        return studentService.getStudentById(id);
     }
 
     @Override
-    public String UpdateStudentById(String id) {
-        return null;
+    public String UpdateStudentById(String id, String name, String surname, String classStudent) {
+        return studentService.updateStudent(id, name, surname, classStudent);
     }
 
     @Override
@@ -59,28 +71,46 @@ public class JournalServerImpl implements JournalServer{
     }
 
     @Override
-    public void AddStudent(String name, String surname, String classStudent){
-        studentService.addStudent(name, surname, classStudent);
+    public String AddStudent(String name, String surname, String classStudent){
+        return studentService.addStudent(name, surname, classStudent);
     }
 
     @Override
-    public String UpdateGradeById(String id) {
-        return null;
+    public String UpdateGradeById(String data) {
+        return journalService.UpdateGradeByStudent(data);
     }
+
+    @Override
+    public String DeleteAllGradeByStudentId(String id){ return journalService.DeleteAllGradeByStudentId(id); }
 
     @Override
     public String[] GetAllSubject() {
-        return subjectService.getAllSubject();
+        return subjectService.getAllSubject(true);
     }
 
     @Override
-    public String DeleteSubjectById(String id) {
-        return null;
+    public String[] GetAllSubject(Boolean isAsc) {
+        return subjectService.getAllSubject(isAsc);
     }
 
     @Override
-    public String UpdateSubjectById(String id) {
-        return null;
+    public String[] GetSubjectByParam(String param, Boolean isAsc){
+        return subjectService.getSubjectByParam(param, isAsc);
+    }
+
+    @Override
+    public String AddSubject(String subjectName) {
+        return subjectService.addSubject(subjectName);
+    }
+
+    @Override
+    public void DeleteSubjectById(String id) {
+        subjectService.deleteSubjectById(id);
+    }
+
+    @Override
+    public String UpdateSubjectById(String id, String subjectName) {
+        return subjectService.updateSubjectById(id, subjectName);
     }
 
     @Override

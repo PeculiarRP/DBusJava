@@ -12,14 +12,14 @@ public class UserService {
     public String authUser(String login, String password){
         User user = userDAO.getUserByLogin(login);
         if (user != null) {
-            if (user.getPassword().equals(password)) return user.getUserId().toString() + ":" + user.getAccess();
+            if (user.getPassword().equals(password)) return user.getUserId().toString() + ":" + user.getLogin() + ":" + user.getAccess();
         }
         return "error";
     }
 
     public String regUser(String login, String password, String access){
         User user = userDAO.getUserByLogin(login);
-        if (user != null){
+        if (user == null){
             user = new User(UUID.randomUUID(), login, password, access);
             userDAO.addUser(user);
             return "Successful";

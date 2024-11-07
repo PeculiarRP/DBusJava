@@ -14,7 +14,7 @@ import java.util.UUID;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Student {
+public class Student implements Comparable<Student> {
 
     @Id
     @Column(name = "id")
@@ -26,9 +26,10 @@ public class Student {
     private String surname;
     @Column(name = "class")
     private String studentClass;
+
     @OneToMany(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "student")
-    private List<Journal> journals = new ArrayList<>();
+    public List<Journal> journals = new ArrayList<>();
 
     @Override
     public String toString(){
@@ -37,4 +38,8 @@ public class Student {
                 + studentClass + ":" + journals.stream().map(Journal::toString).toList();
     }
 
+    @Override
+    public int compareTo(Student o) {
+        return this.getName().compareTo(o.getName());
+    }
 }

@@ -15,7 +15,7 @@ import java.util.UUID;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Subject {
+public class Subject implements Comparable<Subject> {
 
     @Id
     @Column(name = "id")
@@ -29,4 +29,8 @@ public class Subject {
         return getId().toString() + ":" + getObjectName();
     }
 
+    @Override
+    public int compareTo(Subject o) {
+        return this.getObjectName().compareTo(o.getObjectName());
+    }
 }

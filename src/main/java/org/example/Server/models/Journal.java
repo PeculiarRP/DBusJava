@@ -17,12 +17,15 @@ public class Journal {
     @Column(name = "id")
     private UUID id;
 
+    @Column(name = "student")
+    private UUID studentId;
+
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "object")
     private Subject object;
 
     @Column(name = "grade")
-    private int grade;
+    public int grade;
     @Override
     public String toString(){
         return getId().toString() + ":" + object.getObjectName() + ":" + grade;
